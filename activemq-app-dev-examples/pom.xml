@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.apache.activemq</groupId>
+  <artifactId>activemq-app-development</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>ActiveMQ-Application-Development-Examples</name>
+
+  <prerequisites>
+    <maven>3.0.2</maven>
+  </prerequisites>
+
+  <modules>
+    <module>simple-jms-application</module>
+    <module>job-producer</module>
+    <module>job-consumer</module>
+    <module>event-publisher</module>
+    <module>event-subscriber</module>
+    <module>selective-event-consumer</module>
+    <module>jms-requester</module>
+    <module>jms-responder</module>
+    <module>message-scheduling</module>
+    <module>advisory-consumer</module>
+    <module>advisory-generator</module>
+    <module>embedded-broker</module>
+    <module>connection-pools</module>
+    <module>virtual-destinations</module>
+    <module>failover-consumer</module>
+    <module>failover-producer</module>
+  </modules>
+
+  <build>
+    <finalName>activemq-app-dev-examples</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>example-src</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
