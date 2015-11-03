@@ -12,34 +12,34 @@ Getting Started
 > `./bin/activemq console`
 
 ## Example 1  : Queue
->### Sync consumer
->### CD to the project directory to run the code
+> Sync consumer
+> CD to the project directory to run the code
 ```shell
     mvn compile exec:java
     TextMessage message = session.createTextMessage();
 ```
 
 ## Example 2: Queue
->### Prefetch 1 and asyn listner
->###job-consumer and job-producer , random processing time set. Test with two consumers.
+> Prefetch 1 and asyn listner
+>job-consumer and job-producer , random processing time set. Test with two consumers.
 ```shell 
     destination = session.createQueue("JOBQ.Work");
 ```
 
 ## Example 3 : Topics
->### Open two windows for event-subscriber and one window for event-publisher
+>Open two windows for event-subscriber and one window for event-publisher
 ```shell
      destination = session.createTopic("EVENTS.QUOTES");
      Message message = session.createMessage();
 ```
 
->### For durable : set client id and also create durablesubscriber
->### DurableTopics have limitions : either use queues or virtual destinations i.e. 
->### http://activemq.apache.org/virtual-destinations.html
+> For durable : set client id and also create durablesubscriber
+> DurableTopics have limitions : either use queues or virtual destinations i.e. 
+> http://activemq.apache.org/virtual-destinations.html
 
 ## Example 4 : Topics Message Selection
->### Selecting Messages also known as content-based-routing - sql92 syntax
->### event-publisher and selective-event-consumer that selects only with symbol goog
+> Selecting Messages also known as content-based-routing - sql92 syntax
+> event-publisher and selective-event-consumer that selects only with symbol goog
  ```shell
  selector = System.getProperty("QuoteSel", "symbol = 'GOOG'");
  AAPL: $ (881.46906)
