@@ -3,7 +3,7 @@ simple-AMQ
 
 Getting Started
 ---------------
->###Start and Stop AMQ
+##Start and Stop AMQ
 > ./bin/activemq start
 > ./bin/activemq stop
 
@@ -11,13 +11,13 @@ Getting Started
 > `./bin/activemq start xbean:./conf/activemq-stomp.xml`
 > `./bin/activemq console`
 
->## Example 1  : Queue
+## Example 1  : Queue
 >### Sync consumer
 >### CD to the project directory to run the code
 >* mvn compile exec:java
 >* TextMessage message = session.createTextMessage();
 
->## Example 2: Queue
+## Example 2: Queue
 >### Prefetch 1 and asyn listner
 >###job-consumer and job-producer , random processing time set. Test with two consumers.
 ' destination = session.createQueue("JOBQ.Work");
