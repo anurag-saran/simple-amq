@@ -1,16 +1,17 @@
 simple-AMQ
 ===========
 
-Getting Started :
----------------
+Getting Started : Start and Stop Broker
+---------------------------------------
+
 ```shell
-> ./bin/activemq start
-> ./bin/activemq stop
+        ./bin/activemq start
+        ./bin/activemq stop
 ```
-> starting AMQ with a config file
+starting AMQ with a config file
 ```shell
-> `./bin/activemq start xbean:./conf/activemq-stomp.xml`
-> `./bin/activemq console`
+        ./bin/activemq start xbean:./conf/activemq-stomp.xml
+        ./bin/activemq console
 ```
 
 ## Example 1  : Queue
