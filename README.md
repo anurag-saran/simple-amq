@@ -14,19 +14,25 @@ Getting Started
 ## Example 1  : Queue
 >### Sync consumer
 >### CD to the project directory to run the code
->* mvn compile exec:java
->* TextMessage message = session.createTextMessage();
+```shell
+    mvn compile exec:java
+    TextMessage message = session.createTextMessage();
+```
 
 ## Example 2: Queue
 >### Prefetch 1 and asyn listner
 >###job-consumer and job-producer , random processing time set. Test with two consumers.
-' destination = session.createQueue("JOBQ.Work");
-'
+```shell 
+    destination = session.createQueue("JOBQ.Work");
+```
 
 ## Example 3 : Topics
 >### Open two windows for event-subscriber and one window for event-publisher
->* destination = session.createTopic("EVENTS.QUOTES");
->* Message message = session.createMessage();
+```shell
+     destination = session.createTopic("EVENTS.QUOTES");
+     Message message = session.createMessage();
+```
+
 >### For durable : set client id and also create durablesubscriber
 >### DurableTopics have limitions : either use queues or virtual destinations i.e. 
 >### http://activemq.apache.org/virtual-destinations.html
@@ -34,24 +40,29 @@ Getting Started
 ## Example 4 : Topics Message Selection
 >### Selecting Messages also known as content-based-routing - sql92 syntax
 >### event-publisher and selective-event-consumer that selects only with symbol goog
->* selector = System.getProperty("QuoteSel", "symbol = 'GOOG'");
->* AAPL: $ (881.46906)
->* GOOG: $ (534.5367)
->* MSFT: $ (232.24496)
->* mvn compile exec:java -DquoteSel="symbol='MSFT' AND price >= 800"
-
+ ```shell
+ selector = System.getProperty("QuoteSel", "symbol = 'GOOG'");
+ AAPL: $ (881.46906)
+ GOOG: $ (534.5367)
+ MSFT: $ (232.24496)
+ mvn compile exec:java -DquoteSel="symbol='MSFT' AND price >= 800"
+```
 
 ## Example 5 : Request Response
 >jms-requestor and jms-responder
->request.setJMSReplyTo(responseQ); #response Queue property added.
->responder = session.createProducer(null); # created anonymous producer to send message to any destination.
+```shell
+request.setJMSReplyTo(responseQ); #response Queue property added.
+responder = session.createProducer(null); # created anonymous producer to send message to any destination.
+```
 
 ## Example 6 :  Schedule Message Delivery : Update activemq.xml set schedulerSupport=true in broker tag.
 >message-scheduling
->        TextMessage message = session.createTextMessage("Wake Up!");
->        message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
->        message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_PERIOD, period);
->        message.setIntProperty(ScheduledMessage.AMQ_SCHEDULED_REPEAT, repeat);
+ ```shell
+        TextMessage message = session.createTextMessage("Wake Up!");
+        message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
+        message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_PERIOD, period);
+        message.setIntProperty(ScheduledMessage.AMQ_SCHEDULED_REPEAT, repeat);
+```
 >Supports CRON scheduling, one can browser scheduled messages and also remove them.
 
 ##Example 7
@@ -75,17 +86,20 @@ Getting Started
 
 ##Example 11: Failover
 >Faileover-consumer and failover-producer
->private final String connectionUri = "failover:tcp://localhost:61616";
->private final String connectionUri = "failover:(tcp://broker1:61616;tcp://broker2:61616)"
->private final String connectionUri = "failover:(tcp://broker1:61616;tcp://broker2:61616)?randomize=false
+```shell
+      private final String connectionUri = "failover:tcp://localhost:61616";
+      private final String connectionUri = "failover:(tcp://broker1:61616;tcp://broker2:61616)"
+      private final String connectionUri = "failover:(tcp://broker1:61616;tcp://broker2:61616)?randomize=false
+```
 
 >By enabling the update cluster clients option in your ActiveMQ Broker-side configuration file, you can have the broker send >information to the clients that keeps their Failover transports updated on the brokers currently running in a cluster. >Enabling this feature is simple; you just update your configuration to look like the following snippet: 
-><broker> 
->• • • 
-><transportConnectors> <transportConnector name="openwire" uri="tcp://0.0.0.0:61616" updateClusterClients="true" >updateClusterFilter="*A*,*B*" /> 
-></<transportConnectors> 
->• • • 
-></broker> 
-
->Now, in your client code, you only need to specify the address of the first broker in your cluster and the client will be >updated as other brokers are added. It's also possible to have the brokers in a cluster rebalance the connected clients to >more evenly distribute the load across the cluster using this update cluster client feature.
->http://activemq.apache.org/failover-transport-reference.html
+```shell
+<broker> 
+• • • 
+<transportConnectors> <transportConnector name="openwire" uri="tcp://0.0.0.0:61616" updateClusterClients="true" updateClusterFilter="*A*,*B*" /> 
+</<transportConnectors> 
+• • • 
+</broker> 
+```
+Now, in your client code, you only need to specify the address of the first broker in your cluster and the client will be updated as other brokers are added. It's also possible to have the brokers in a cluster rebalance the connected clients to more evenly distribute the load across the cluster using this update cluster client feature.
+http://activemq.apache.org/failover-transport-reference.html
